@@ -1,0 +1,32 @@
+{
+  "name": "create-r3",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "create-r3": "./index.js"
+  },
+  "keywords": [
+    "r3",
+    "create",
+    "cli",
+    "refine",
+    "remult",
+    "react",
+    "nextJs"
+  ],
+  "author": "Karl Kenneth Alibuas",
+  "license": "ISC",
+  "dependencies": {
+    "execa": "^7.1.1",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^9.1.5",
+    "ora": "^6.3.0",
+    "path": "^0.12.7"
+  }
+}
