@@ -1,6 +1,8 @@
 import { LiveProvider, LiveEvent, DataProvider } from "@refinedev/core";
 import { FindOptions, remult, LiveQueryChange } from "remult";
-import { generateFilter } from "./dataProvider";
+import { generateFilter } from "../dataProvider/dataProvider";
+
+
 
 export const liveProvider = (entities: any[]): LiveProvider => {
     function repoByKey(key: string) {
@@ -13,6 +15,7 @@ export const liveProvider = (entities: any[]): LiveProvider => {
     }
     return {
         subscribe: ({ channel, types, params, callback }) => {
+
             const resource = channel.replace("resources/", "");
             const options: FindOptions<any> = {
                 page: (params?.pagination?.current || 1) - 1,
@@ -26,7 +29,8 @@ export const liveProvider = (entities: any[]): LiveProvider => {
             }
             options.where = generateFilter(params?.filters);
 
-            const unsubscribe = repoByKey(resource).liveQuery(options).subscribe((data) => {
+            const channelInstance = repoByKey(resource).liveQuery(options)
+            channelInstance.subscribe((data) => {
                 console.log("liveQuery", data)
                 const event: LiveEvent = {
                     type: data.changes.length > 0 ? "update" : "create",
@@ -39,11 +43,13 @@ export const liveProvider = (entities: any[]): LiveProvider => {
                 callback(event);
             });
 
-            return { unsubscribe };
+            return { channelInstance };
 
         },
         unsubscribe: (subscription) => {
-            subscription.unsubscribe();
+            subscription.subscribe();
+
+
         }
     };
 };
