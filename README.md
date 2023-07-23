@@ -12,10 +12,6 @@ Refine is a React-based framework that accelerates web application development b
 ## Remult.dev
 Remult is a full stack CRUD framework that leverages your TypeScript model types to deliver a secure and highly configurable REST API, a type-safe frontend API client, and a type-safe backend query builder. By integrating Remult into the R3-App stack, developers can enjoy an efficient and secure development environment that promotes type safety across the entire application.
 
-## Installation
-```bash
- npm i create-r3
-```
 
 ## Usage
 
