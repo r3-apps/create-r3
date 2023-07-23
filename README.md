@@ -1,6 +1,13 @@
 
 # R3-APP
 
+
+## Sample Project 
+### [PayLink](https://github.com/r3-apps/create-r3/tree/main/example/paylink)
+ - fullstack app with R-3 app and [Paymongo](https://www.paymongo.com/)
+ ### [BlogCMS](https://github.com/kalib-code/create-r3-app-demo)
+ - Create a Blog management with the power of R-3 app 
+
 The R3-App Tech Stack: The R3-App comprises three key components that work seamlessly together to create a robust full-stack development environment.
 
 ## Next.js
@@ -21,4 +28,4 @@ npx create-r3
 
 it will generate a fullstack App with sample remult usage.
 
-for more advanced tutorials you might want to check out [refine.dev](refine.dev)and [remult.dev](remult.dev) documentation.
+for more advanced tutorials you might want to check out [refine.dev](refine.dev) and [remult.dev](remult.dev) documentation.
