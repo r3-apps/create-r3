@@ -1,0 +1,30 @@
+[
+  {
+    "id": "clg1n2c250000wcp43vxg1kub",
+    "title": "test",
+    "content": "test",
+    "status": "draft",
+    "createdAt": "2023-04-04T02:26:09.677Z"
+  },
+  {
+    "id": "clg1n2hvd0001wcp40fib571y",
+    "title": "test 2",
+    "content": "test",
+    "status": "draft",
+    "createdAt": "2023-04-04T02:26:17.209Z"
+  },
+  {
+    "id": "clg1n2k1r0002wcp40v4mf3ln",
+    "title": "test 3",
+    "content": "test",
+    "status": "draft",
+    "createdAt": "2023-04-04T02:26:20.032Z"
+  },
+  {
+    "id": "clg1n2nkb0003wcp47f9873xw",
+    "title": "test 4",
+    "content": "test",
+    "status": "draft",
+    "createdAt": "2023-04-04T02:26:24.587Z"
+  }
+]
