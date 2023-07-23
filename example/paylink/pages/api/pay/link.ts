@@ -2,11 +2,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { remult, } from "remult";
 import { Links } from 'src/shared/Links';
-remult.apiClient.url = `http://localhost:3000/api`
+import api from "../[...remult]"
 
 import axios from "axios";
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default api.handle(async (req: NextApiRequest, res: NextApiResponse) => {
+    
     const username = process.env.NEXT_PUBLIC_PAYMONGO_SECRET_KEY;
     const baseUrlPaymongo = 'https://api.paymongo.com/v1';
     const password = '';
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log('Response from PayMongo:', response.data);
 
         const dataRes = response.data.data;
-        const linkRepo = remult!.repo(Links);
+        const linkRepo = remult!.repo(Links);   
        
         const data = await linkRepo.insert({
             id: dataRes.id,
@@ -60,4 +60,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error('Error:', e);
         res.status(500).json({ message: 'Internal Server Error', error: e.toString() });
     }
-}
+})

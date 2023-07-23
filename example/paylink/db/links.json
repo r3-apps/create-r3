@@ -1,0 +1,24 @@
+[
+  {
+    "id": "link_qugxLNsJu3kSdZxEDJckSzGn",
+    "type": "link",
+    "attributes": {
+      "amount": 10000,
+      "archived": false,
+      "currency": "PHP",
+      "description": "description",
+      "livemode": false,
+      "fee": 0,
+      "remarks": "remarks",
+      "status": "unpaid",
+      "tax_amount": null,
+      "taxes": [],
+      "checkout_url": "https://pm.link/kalibuas/test/baxvgu6",
+      "reference_number": "baxvgu6",
+      "created_at": 1690103060,
+      "updated_at": 1690103060,
+      "payments": []
+    },
+    "createdAt": "2023-07-23T09:04:20.617Z"
+  }
+]

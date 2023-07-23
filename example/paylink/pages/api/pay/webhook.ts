@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Database } from "../../../types/supabase";
+import api from "../[...remult]"
+import { Payments } from 'src/shared/Payments'
+import { Links } from 'src/shared/Links'
+import { remult } from 'remult'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default api.handle(async (req: NextApiRequest, res: NextApiResponse) => {
     console.log("=====[ START - WEBHOOK ] ===== ", req.body)
     const method = req.method
     const { data: { attributes: { data: resBody } } } = req.body;
@@ -11,15 +13,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return
     }
 
-    const supabase = createServerSupabaseClient<Database>({
-        req,
-        res,
-    })
-
     const paidPayments = resBody.attributes.payments.filter((payment: any) => payment.data.attributes.status === "paid");
 
+    const repoPay = remult!.repo(Payments);
+    const repoLink = remult!.repo(Links)
+
     try {
-        const { data, error } = await supabase.from('payments').upsert([{
+       const data = await repoPay.insert({
             id: paidPayments[0].data.id,
             grossAmount: paidPayments[0].data.attributes.amount,
             netAmount: paidPayments[0].data.attributes.net_amount,
@@ -28,32 +28,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             billing: paidPayments[0].data.attributes.billing,
             reference_number: paidPayments[0].data.attributes.external_reference_number,
             link: resBody.id,
-        }]).select();
+        });
 
 
-        if (error) {
-            return res.status(500).json({ message: error })
-        }
+       const existId = await repoLink.findId(resBody.id)
 
-        const { data: links, error: error2 } = await supabase.from('links').upsert([{
+       if(existId.id){
+        const linkUpdate = await repoLink.update(existId.id,{
             id: resBody.id,
             type: resBody.type,
             attributes: resBody.attributes,
-        }]).select();
+        });
+        res.status(200).json({ data , linkUpdate})
 
-        if (error2) {
-            return res.status(500).json({ message: error2 })
-        }
-        res.status(200).json({ data, links })
+    }
+        res.status(200).json({ data })
 
     } catch (error) {
         return res.status(500).json({ message: error })
     }
 
-
-
-
-
-
-
-}
+})
