@@ -19,6 +19,6 @@ Remult is a full stack CRUD framework that leverages your TypeScript model types
 npx create-r3
 ```
 
-it will generate a fullstack up with sample.
+it will generate a fullstack App with sample remult usage.
 
 for more advanced tutorials you might want to check out [refine.dev](refine.dev)and [remult.dev](remult.dev) documentation.
